@@ -1,0 +1,29 @@
+[
+  {
+    "_id": 1,
+    "name": "Titanium Exhaust",
+    "price": "100",
+    "image": "https://i.ibb.co/yR22gsC/titanium-exhaust.jpg",
+    "quantity": "500",
+    "minorder": "100",
+    "description": "This exclusive accessory is the only Lamborghini type-approved exhaust system that can guarantee the validity of the warranty conditions"
+  },
+  {
+    "_id": 2,
+    "name": "Interior Protection",
+    "price": "100",
+    "image": "https://i.ibb.co/rm5WgWS/interior-protection.jpg",
+    "quantity": "500",
+    "minorder": "100",
+    "description": " This set of accessories is characterized by style and practicality and is designed to protect the quality of the interior of your Urus."
+  },
+  {
+    "_id": 3,
+    "name": "Carbon Fiber Component",
+    "price": "100",
+    "image": "https://i.ibb.co/sq1frZ9/carbon-fiber-component.jpg",
+    "quantity": "500",
+    "minorder": "100",
+    "description": "Automobili Lamborghini has an unrivaled tradition in the development of high-tech solutions using carbon fiber, a lightweight and extremely durable material"
+  }
+]
