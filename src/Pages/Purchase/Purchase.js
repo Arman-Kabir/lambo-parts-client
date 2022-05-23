@@ -58,8 +58,11 @@ const Purchase = () => {
         })
         .then(res=>res.json())
         .then(data=>{
+            if(data.insertedId){
+                toast.success('Order Placed');
+            }
             console.log(data);
-            // toast.success('Order Placed');
+            // 
         })
 
         console.log(order);
