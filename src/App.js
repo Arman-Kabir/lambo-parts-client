@@ -11,15 +11,15 @@ import RequireAuth from './Pages/Login/RequireAuth';
 
 function App() {
   return (
-    <div>
+    <div className='px-12 mx-auto'>
       <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<Home />} />
 
-        <Route path="purchase" element={<RequireAuth>
+        <Route path="purchase/:id" element={<RequireAuth>
           <Purchase></Purchase>
         </RequireAuth>} />
-        
+
         <Route path="blogs" element={<Blogs></Blogs>} />
         <Route path="about" element={<About />} />
         <Route path="login" element={<Login></Login>} />
