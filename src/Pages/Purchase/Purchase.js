@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 
 const Purchase = () => {
     const [user, loading, error] = useAuthState(auth);
-    console.log(user);
+    // console.log(user);
     const { id } = useParams();
     const [partsDetails, setPartsDetails] = useState([]);
+    // console.log(partsDetails);
     const [on, setOn] = useState(true);
-    console.log(on);
+    // console.log(on);
 
     if (partsDetails) {
         const { _id, name, image, description, quantity, minorder } = partsDetails;
@@ -23,7 +25,7 @@ const Purchase = () => {
 
     // disable or able the submit button
     const handleQuantityChange = event => {
-        console.log(event.target.value);
+        // console.log(event.target.value);
         if (parseInt(event.target.value) >= parseInt(partsDetails?.minorder)) {
             setOn(false);
         } else {
@@ -33,11 +35,34 @@ const Purchase = () => {
 
     const handleOrder = event => {
         event.preventDefault();
-        console.log('submit btn clicked');
+        // console.log('submit btn clicked');
         const phone = event.target.phone.value;
         const address = event.target.address.value;
         const orderQuantity = event.target.orderQuantity.value;
-        console.log(phone,address,orderQuantity);
+        // console.log(phone,address,orderQuantity);
+
+        const order= {
+            orderId: partsDetails?._id,
+            order: partsDetails?.name,
+            userName:user?.displayName,
+            userEmail:user?.email,
+            payment: 'false',
+            phone,address,orderQuantity,
+        }
+        fetch('http://localhost:5000/orders',{
+            method:'POST',
+            headers:{
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(order)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data);
+            // toast.success('Order Placed');
+        })
+
+        console.log(order);
     }
 
     return (
