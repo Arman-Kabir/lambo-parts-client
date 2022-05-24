@@ -13,6 +13,8 @@ import RequireAuth from './Pages/Login/RequireAuth';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import MyOrders from './Pages/Dashboard/MyOrders';
 import AddaReview from './Pages/Dashboard/AddaReview';
+import Users from './Pages/Dashboard/Users';
+import RequireAdmin from './Pages/Login/RequireAdmin';
 
 function App() {
   return (
@@ -31,6 +33,9 @@ function App() {
 
           <Route index element={<MyOrders></MyOrders>}></Route>
           <Route path='addareview' element={<AddaReview></AddaReview>}></Route>
+          <Route path='users' element={<RequireAdmin>
+            <Users></Users>
+          </RequireAdmin>}></Route>
 
         </Route>
 

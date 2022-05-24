@@ -8,7 +8,12 @@ const Purchase = () => {
     const [user, loading, error] = useAuthState(auth);
     // console.log(user);
     const { id } = useParams();
+    
     const [partsDetails, setPartsDetails] = useState([]);
+
+    // if(!partsDetails){
+    //     <p>GO to home to purchase</p>
+    // }
     // console.log(partsDetails);
     const [on, setOn] = useState(true);
     // console.log(on);
