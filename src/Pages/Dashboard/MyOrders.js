@@ -7,10 +7,23 @@ const MyOrders = () => {
     const [user] = useAuthState(auth);
     // console.log(myorders);
     // console.log(user);
+
+
     useEffect(() => {
         if (user) {
-            fetch(`http://localhost:5000/orders?userEmail=${user.email}`)
-                .then(res => res.json())
+            fetch(`http://localhost:5000/orders?userEmail=${user.email}`, {
+                method: 'GET',
+                headers: {
+                    'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                }
+            })
+                .then(res => {
+                    console.log('res', res);
+                    if (res.status === 401 || res.status === 403) {
+                        return;
+                    }
+                    return res.json()
+                })
                 .then(data => {
                     setMyOrders(data)
                 });
@@ -22,10 +35,10 @@ const MyOrders = () => {
 
             <div class="card w-96 bg-base-100 shadow-xl my-4">
                 <div class="card-body">
-                    <h2 class="font-bold text-xl text-primary"> My orders...{myorders.length}</h2>
+                    {/* <h2 class="font-bold text-xl text-primary"> My orders...{myorders.length}</h2> */}
                     <div>
                         <p>Name: {user.displayName}</p>
-                        <p>Email: {user.email}</p>                       
+                        <p>Email: {user.email}</p>
                         {/* <span>Name: {user.email}</span> */}
                     </div>
                 </div>
