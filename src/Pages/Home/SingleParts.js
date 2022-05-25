@@ -11,7 +11,7 @@ const SingleParts = ({ parts }) => {
     }
     return (
         <div>
-            <div class="card  bg-base-100 shadow-xl">
+            <div class="card  bg-base-100 shadow-xl h-full">
                 <figure><img className='h-48' src={image} alt="Shoes" /></figure>
                 <div class="card-body">
                     <h2 class="card-title">{name}</h2>

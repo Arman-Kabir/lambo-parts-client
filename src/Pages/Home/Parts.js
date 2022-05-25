@@ -10,10 +10,10 @@ const Parts = () => {
             .then(data => setParts(data))
     }, [])
     return (
-        <div>
-            <h2 className='text-center font-bold text-3xl my-8'>Our Exclusive Parts{parts.length}</h2>
+        <div className='my-28'>
+            <h2 className='text-center font-bold text-5xl text-primary my-8'>Our Exclusive Parts{parts.length}</h2>
 
-            <div className='grid grid-cols-3 gap-4 mx-auto'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mx-auto'>
                 {
                     parts.map(parts => <SingleParts
                         key={parts._id}
