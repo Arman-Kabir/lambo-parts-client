@@ -16,6 +16,8 @@ import AddaReview from './Pages/Dashboard/AddaReview';
 import Users from './Pages/Dashboard/Users';
 import RequireAdmin from './Pages/Login/RequireAdmin';
 import Payment from './Pages/Dashboard/Payment';
+import NotFound from './Pages/Shared/NotFound';
+import MyPortfolio from './Pages/MyPortfolio/MyPortfolio';
 
 function App() {
   return (
@@ -43,10 +45,12 @@ function App() {
 
         </Route>
 
+        <Route path="my-portfolio" element={<MyPortfolio></MyPortfolio>} />
         <Route path="blogs" element={<Blogs></Blogs>} />
-        <Route path="about" element={<About />} />
+        {/* <Route path="about" element={<About />} /> */}
         <Route path="login" element={<Login></Login>} />
         <Route path="signup" element={<SignUp></SignUp>} />
+        <Route path="*" element={<NotFound></NotFound>} />
       </Routes>
       <ToastContainer />
     </div>
