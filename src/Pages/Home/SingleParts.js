@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 const SingleParts = ({ parts }) => {
     const navigate = useNavigate();
-    const { _id, name, image, description, quantity, minorder } = parts;
+    const { _id, name, image, description, quantity, minorder, price } = parts;
 
     const handlePurchase = id => {
         // console.log(id);
@@ -18,8 +18,9 @@ const SingleParts = ({ parts }) => {
                     <p>{description}</p>
 
                     <div className=''>
-                        <p className=''>Available Quantity :{quantity}</p>
-                        <p className=''>Minimum Order : {minorder}</p>
+                        <p className=''>Available Quantity :<span className='font-bold text-success'> {quantity}</span></p>
+                        <p className=''>Minimum Order :<span className='font-bold text-success'> {minorder}</span></p>
+                        <p className=''>Price : <span className='font-bold text-success'>    {price}</span></p>
                     </div>
 
                     <div class="card-actions justify-end">

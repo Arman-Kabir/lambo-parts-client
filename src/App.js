@@ -15,6 +15,7 @@ import MyOrders from './Pages/Dashboard/MyOrders';
 import AddaReview from './Pages/Dashboard/AddaReview';
 import Users from './Pages/Dashboard/Users';
 import RequireAdmin from './Pages/Login/RequireAdmin';
+import Payment from './Pages/Dashboard/Payment';
 
 function App() {
   return (
@@ -33,6 +34,9 @@ function App() {
 
           <Route index element={<MyOrders></MyOrders>}></Route>
           <Route path='addareview' element={<AddaReview></AddaReview>}></Route>
+          
+          <Route path='payment/:id' element={<Payment></Payment>}></Route>
+          
           <Route path='users' element={<RequireAdmin>
             <Users></Users>
           </RequireAdmin>}></Route>

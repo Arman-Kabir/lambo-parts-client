@@ -8,7 +8,7 @@ const Purchase = () => {
     const [user, loading, error] = useAuthState(auth);
     // console.log(user);
     const { id } = useParams();
-    
+
     const [partsDetails, setPartsDetails] = useState([]);
 
     // if(!partsDetails){
@@ -19,7 +19,7 @@ const Purchase = () => {
     // console.log(on);
 
     if (partsDetails) {
-        const { _id, name, image, description, quantity, minorder } = partsDetails;
+        const { _id, name, image, description, quantity, minorder, price } = partsDetails;
     }
 
     useEffect(() => {
@@ -46,29 +46,30 @@ const Purchase = () => {
         const orderQuantity = event.target.orderQuantity.value;
         // console.log(phone,address,orderQuantity);
 
-        const order= {
+        const order = {
             orderId: partsDetails?._id,
             order: partsDetails?.name,
-            userName:user?.displayName,
-            userEmail:user?.email,
+            price: partsDetails?.price,
+            userName: user?.displayName,
+            userEmail: user?.email,
             payment: 'false',
-            phone,address,orderQuantity,
+            phone, address, orderQuantity,
         }
-        fetch('http://localhost:5000/orders',{
-            method:'POST',
-            headers:{
+        fetch('http://localhost:5000/orders', {
+            method: 'POST',
+            headers: {
                 'content-type': 'application/json'
             },
             body: JSON.stringify(order)
         })
-        .then(res=>res.json())
-        .then(data=>{
-            if(data.insertedId){
-                toast.success('Order Placed');
-            }
-            console.log(data);
-            // 
-        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.insertedId) {
+                    toast.success('Order Placed');
+                }
+                console.log(data);
+                // 
+            })
 
         console.log(order);
     }
@@ -94,7 +95,7 @@ const Purchase = () => {
                         <form action="" onSubmit={handleOrder}>
                             <input type="text" placeholder="Your Phone" name='phone' class="input w-full max-w-xs  mt-2" />
                             <input type="text" placeholder="address" name='address' class="input w-full max-w-xs mt-2" />
-                            
+
                             <small className='text-center text-red-500 block'><span>Minimum Order is {partsDetails?.minorder}</span></small>
                             <input type="number" onChange={handleQuantityChange} placeholder='Order Quantity' name='orderQuantity' class="input w-full max-w-xs mt-2" />
 
