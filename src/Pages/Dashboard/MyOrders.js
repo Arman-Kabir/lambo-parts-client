@@ -36,11 +36,11 @@ const MyOrders = () => {
     }, [user])
     return (
         <div>
-            {/* Card to show user information */}
+            {/* Card to show logged-in user information */}
 
             <div class="card w-96 bg-base-100 shadow-xl my-4">
                 <div class="card-body">
-                    {/* <h2 class="font-bold text-xl text-primary"> My orders...{myorders.length}</h2> */}
+                    <h2 class="font-bold text-xl text-primary"> My orders...{myorders.length}</h2>
                     <div>
                         <p>Name: {user.displayName}</p>
                         <p>Email: {user.email}</p>

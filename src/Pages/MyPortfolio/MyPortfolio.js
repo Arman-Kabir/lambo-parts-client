@@ -53,7 +53,7 @@ const MyPortfolio = () => {
 
             <div class="card w-96 bg-base-100 shadow-xl">
                 <div class="card-body">
-                    <h2 class="text-3xl font-bold text-center">3 of my Projects</h2>
+                    <h2 class="text-3xl font-bold">3 of my Projects</h2>
                     <div>
                         <a className='block font-bold link text-success my-4' href="https://royalbikes-76899.web.app" target='_blank'>Royal Bikes</a>
                         <a className='block font-bold link text-success my-4' href="https://mister-bd-gym.web.app/" target='_blank'>Mister BD Gym</a>

@@ -18,8 +18,14 @@ import RequireAdmin from './Pages/Login/RequireAdmin';
 import Payment from './Pages/Dashboard/Payment';
 import NotFound from './Pages/Shared/NotFound';
 import MyPortfolio from './Pages/MyPortfolio/MyPortfolio';
+import MyProfile from './Pages/Dashboard/MyProfile';
+import auth from './firebase.init';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import useAdmin from './hooks/useAdmin';
 
 function App() {
+  const [user] = useAuthState(auth);
+  const [admin] = useAdmin(user);
   return (
     <div className='px-12 mx-auto'>
       <Navbar></Navbar>
@@ -34,14 +40,23 @@ function App() {
           <Dashboard></Dashboard>
         </RequireAuth>} >
 
+
+          {
+            !admin && <Route index element={<MyOrders></MyOrders>}></Route>
+          }
+          {
+            admin && <Route index  element={<RequireAdmin>
+              <Users></Users>
+            </RequireAdmin>}></Route>
+          }
+
           <Route index element={<MyOrders></MyOrders>}></Route>
           <Route path='addareview' element={<AddaReview></AddaReview>}></Route>
-          
+          <Route path='myprofile' element={<MyProfile></MyProfile>}></Route>
+
           <Route path='payment/:id' element={<Payment></Payment>}></Route>
-          
-          <Route path='users' element={<RequireAdmin>
-            <Users></Users>
-          </RequireAdmin>}></Route>
+
+
 
         </Route>
 
