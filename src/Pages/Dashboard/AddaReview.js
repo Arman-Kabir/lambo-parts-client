@@ -36,7 +36,7 @@ const AddaReview = () => {
         console.log(review);
 
         // sending review to server
-        fetch('http://localhost:5000/review',{
+        fetch('https://powerful-scrubland-16062.herokuapp.com/review',{
             method:'POST',
             headers: {
                 'content-type':'application/json'

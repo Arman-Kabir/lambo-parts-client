@@ -23,7 +23,7 @@ const Purchase = () => {
     }
 
     useEffect(() => {
-        fetch(`http://localhost:5000/parts/${id}`)
+        fetch(`https://powerful-scrubland-16062.herokuapp.com/parts/${id}`)
             .then(res => res.json())
             .then(data => setPartsDetails(data))
     }, []);
@@ -31,7 +31,7 @@ const Purchase = () => {
     // disable or able the submit button
     const handleQuantityChange = event => {
         // console.log(event.target.value);
-        if (parseInt(event.target.value) >= parseInt(partsDetails?.minorder)) {
+        if (parseInt(event.target.value) >= parseInt(partsDetails?.minorder) &&  parseInt(event.target.value) <= parseInt(partsDetails?.quantity)) {
             setOn(false);
         } else {
             setOn(true);
@@ -55,7 +55,7 @@ const Purchase = () => {
             payment: 'false',
             phone, address, orderQuantity,
         }
-        fetch('http://localhost:5000/orders', {
+        fetch('https://powerful-scrubland-16062.herokuapp.com/orders', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -96,7 +96,7 @@ const Purchase = () => {
                             <input type="text" placeholder="Your Phone" name='phone' class="input w-full max-w-xs  mt-2" />
                             <input type="text" placeholder="address" name='address' class="input w-full max-w-xs mt-2" />
 
-                            <small className='text-center text-red-500 block'><span>Minimum Order is {partsDetails?.minorder}</span></small>
+                            <small className='text-center text-red-500 block'><span>Minimum Order is {partsDetails?.minorder} and Maximum order is {partsDetails?.quantity}</span></small>
                             <input type="number" onChange={handleQuantityChange} placeholder='Order Quantity' name='orderQuantity' class="input w-full max-w-xs mt-2" />
 
                             <input disabled={on} type="submit" value="Order" class="btn w-full max-w-xs mt-2" />

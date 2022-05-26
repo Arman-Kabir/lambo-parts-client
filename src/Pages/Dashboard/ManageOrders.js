@@ -9,7 +9,7 @@ const ManageOrders = () => {
     const [user] = useAuthState(auth);
 
     useEffect(() => {
-        fetch('http://localhost:5000/allorders', {
+        fetch('https://powerful-scrubland-16062.herokuapp.com/allorders', {
             method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -19,12 +19,33 @@ const ManageOrders = () => {
             .then(data => setAllOrders(data))
     }, [allorders])
 
+    const handleStatus = id => {
+        // let confirm = window.confirm('Do you want to delete this ????');
+        // if (confirm) {
+        console.log('changing status', id);
+
+        fetch(`https://powerful-scrubland-16062.herokuapp.com/allorders/${id}`, {
+            method: 'PUT',
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    toast.success('Yeah Status Changed');
+                }
+                console.log(data);
+            })
+        // }
+    }
+
     const handleDelete = id => {
         let confirm = window.confirm('Do you want to delete this ????');
         if (confirm) {
             console.log('deleting id', id);
 
-            fetch(`http://localhost:5000/allorders/${id}`, {
+            fetch(`https://powerful-scrubland-16062.herokuapp.com/allorders/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -33,7 +54,7 @@ const ManageOrders = () => {
                 .then(res => res.json())
                 .then(data => {
                     if (data.deletedCount) {
-                        toast.error('Yeah Data Deleted');
+                        toast.success('unpaid Order deleted');
                     }
                     console.log(data);
                 })
@@ -86,8 +107,15 @@ const ManageOrders = () => {
                                 <td>{ao.price}</td>
 
                                 <td>{ao.payment === 'false' ?
-                                    <button onClick={() => handleDelete(ao._id)} class="btn btn-xs btn-error">Delete</button>
-                                    : <button class="btn btn-xs btn-success">Paid</button>
+                                    <button onClick={() => handleDelete(ao._id)} class="btn btn-xs btn-error">Unpaid</button>
+                                    : <div>
+                                        {
+                                            ao.status === 'shipped' ? <button  class="btn btn-xs  btn-info">Shipped</button>
+                                                : <button onClick={() => handleStatus(ao._id)} class="btn btn-xs btn-success">Pending</button>
+                                        }
+
+                                    </div>
+
                                 }</td>
 
                             </tr>)

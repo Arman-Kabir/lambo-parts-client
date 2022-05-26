@@ -10,7 +10,7 @@ const ManageProducts = () => {
     const [modal, setModal] = useState(false);
 
     useEffect(() => {
-        fetch('http://localhost:5000/parts', {
+        fetch('https://powerful-scrubland-16062.herokuapp.com/parts', {
             method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -25,7 +25,7 @@ const ManageProducts = () => {
         if (confirm) {
             console.log('deleting id', id);
 
-            fetch(`http://localhost:5000/parts/${id}`, {
+            fetch(`https://powerful-scrubland-16062.herokuapp.com/parts/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'authorization': `Bearer ${localStorage.getItem('accessToken')}`

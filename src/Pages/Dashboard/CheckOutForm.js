@@ -15,7 +15,7 @@ const CheckOutForm = ({ order }) => {
     console.log('order', order);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/create-payment-intent`, {
+        fetch(`https://powerful-scrubland-16062.herokuapp.com/create-payment-intent`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -82,7 +82,7 @@ const CheckOutForm = ({ order }) => {
             }
             console.log('transaction', transaction);
 
-            fetch(`http://localhost:5000/orders/${_id}`, {
+            fetch(`https://powerful-scrubland-16062.herokuapp.com/orders/${_id}`, {
                 method: 'PATCH',
                 headers: {
                     'content-type': 'application/json',
