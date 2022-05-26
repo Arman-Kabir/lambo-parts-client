@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import DeleteModal1 from './DeleteModal1';
 
@@ -23,9 +24,25 @@ const ManageProducts = () => {
         let confirm = window.confirm('Do you want to delete this ????');
         if (confirm) {
             console.log('deleting id', id);
+
+            fetch(`http://localhost:5000/parts/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount) {
+                        toast.error('Yeah Parts Deleted');
+
+                    }
+                    console.log(data);
+                })
+            setModal(ap);
         }
 
-        // setModal(ap);
+
 
     }
 
@@ -83,10 +100,10 @@ const ManageProducts = () => {
 
                     </tbody>
                 </table>
-                {/* {modal && <DeleteModal1
+                {modal && <DeleteModal1
                     key={modal._id}
                     modal={modal}
-                ></DeleteModal1>} */}
+                ></DeleteModal1>}
             </div>
         </div>
     );
