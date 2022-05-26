@@ -65,6 +65,7 @@ const AddaReview = () => {
                     </div>
                 </div>
             </div>
+            
             {/* add a review form field */}
             <div class="card w-96 bg-base-100 shadow-xl">
                 <div class="card-body">
