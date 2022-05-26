@@ -10,7 +10,7 @@ const Dashboard = () => {
 
     const navigate = useNavigate();
     if (!user) {
-        navigate('/');
+        navigate('/login');
     }
 
     return (
@@ -34,6 +34,8 @@ const Dashboard = () => {
                     {!admin && <li><Link to="/dashboard/addareview">Add a Review</Link></li>}
                     <li><Link to="/dashboard/myprofile">My Profile</Link></li>
                     <li>{admin && <Link to="/dashboard">Users:Make Admin</Link>}</li>
+                    <li>{admin && <Link to="/dashboard/manageorders">Manage Orders</Link>}</li>
+                    <li>{admin && <Link to="/dashboard/manageproducts">Manage Products</Link>}</li>
                 </ul>
 
             </div>

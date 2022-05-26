@@ -22,6 +22,8 @@ import MyProfile from './Pages/Dashboard/MyProfile';
 import auth from './firebase.init';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import useAdmin from './hooks/useAdmin';
+import ManageOrders from './Pages/Dashboard/ManageOrders';
+import ManageProducts from './Pages/Dashboard/ManageProducts';
 
 function App() {
   const [user] = useAuthState(auth);
@@ -50,11 +52,14 @@ function App() {
             </RequireAdmin>}></Route>
           }
 
-          <Route index element={<MyOrders></MyOrders>}></Route>
+          {/* <Route index element={<MyOrders></MyOrders>}></Route> */}
           <Route path='addareview' element={<AddaReview></AddaReview>}></Route>
           <Route path='myprofile' element={<MyProfile></MyProfile>}></Route>
 
           <Route path='payment/:id' element={<Payment></Payment>}></Route>
+
+          <Route path='manageorders' element={<ManageOrders></ManageOrders>}></Route>
+          <Route path='manageproducts' element={<ManageProducts></ManageProducts>}></Route>
 
 
 
